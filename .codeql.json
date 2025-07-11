@@ -1,7 +1,7 @@
 {
     "projects": [
         {
-            "path": "./tests_projects/project-java-1",
+            "path": "./project-java-1",
             "build-mode": "manual",
             "build-script": "./build/project-java-1.sh",
             "queries": [
@@ -9,11 +9,7 @@
             ]
         },
         {
-            "path": "./tests_projects/project-python-1",
-            "build-mode": "none"
-        },
-        {
-            "path": "./tests_projects/project-csharp-1",
+            "path": "./project-python-1",
             "build-mode": "none"
         }
     ]
