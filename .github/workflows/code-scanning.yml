@@ -1,0 +1,36 @@
+# Workflow for scanning code with CodeQL
+name: codeql-wrapper-monorepo
+
+# Trigger workflow
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  codeql-analysis:
+    name: codeql-wrapper-monorepo
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install CodeQL Wrapper
+      run: pip install codeql-wrapper
+    
+    - name: Run CodeQL Analysis
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      run: |
+        codeql-wrapper analyze . --monorepo --upload-sarif --verbose
