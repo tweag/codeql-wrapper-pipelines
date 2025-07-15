@@ -19,10 +19,8 @@ jobs:
     
     - name: Install Python
       run: |
-        sudo apt update
-        sudo apt install -y python3
-        python3 --version
-        python -m pip install --upgrade pip setuptools wheel
+        chmod +x ./.github/scripts/install-python.sh
+        ./.github/scripts/install-python.sh
 
     # https://test.pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
