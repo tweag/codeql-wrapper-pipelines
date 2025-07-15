@@ -21,7 +21,8 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.12'
-    
+
+    # https://pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
       run: pip install codeql-wrapper
     
