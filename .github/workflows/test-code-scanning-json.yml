@@ -17,15 +17,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
+    - name: Install Python
+      run: |
+        sudo apt update
+        sudo apt install -y python3
+        python3 --version
+        python -m pip install --upgrade pip setuptools wheel
 
     # https://test.pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
       run: |
-        python -m pip install --upgrade pip setuptools wheel
         pip install -i https://test.pypi.org/simple/ codeql-wrapper
         codeql-wrapper --version
     
