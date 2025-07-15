@@ -18,15 +18,16 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.12'
 
     # https://test.pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
       run: |
+        python -m pip install --upgrade pip setuptools wheel
         pip install -i https://test.pypi.org/simple/ codeql-wrapper
-        codeql-wrapper --version
+        pip codeql-wrapper --version
     
     - name: Run CodeQL Analysis
       env:
