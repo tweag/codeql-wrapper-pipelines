@@ -19,8 +19,8 @@ jobs:
     
     - name: Install Python
       run: |
-        chmod +x ./install-python.sh
-        ./install-python.sh
+        chmod +x ./install_python.sh
+        ./install_python.sh
 
     # https://test.pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
