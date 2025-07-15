@@ -1,5 +1,5 @@
 # Workflow for scanning code with CodeQL
-name: codeql-wrapper-monorepo
+name: test-codeql-wrapper-monorepo
 
 # Trigger workflow
 on:
