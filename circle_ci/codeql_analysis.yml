@@ -22,9 +22,10 @@ jobs:
 
       - run:
           name: Run CodeQL Analysis
-          environment:
-            GITHUB_TOKEN: ${PAT} # Set PAT as environment variable in CircleCI project settings
+          #environment:
+          #  GITHUB_TOKEN: ${PAT} # Set PAT as environment variable in CircleCI project settings
           command: |
+            export GITHUB_TOKEN=${PAT} # Set PAT as environment variable in CircleCI project settings
             codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
 
 workflows:
