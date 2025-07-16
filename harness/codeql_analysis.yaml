@@ -1,5 +1,5 @@
 pipeline:
-  name: Monorepo CodeQL Analysis (codeql-wrapper)
+  name: Monorepo CodeQL Analysis
   identifier: codeql_analysis
   projectIdentifier: default_project # Replace with your actual project identifier
   orgIdentifier: default # Replace with your actual org identifier
