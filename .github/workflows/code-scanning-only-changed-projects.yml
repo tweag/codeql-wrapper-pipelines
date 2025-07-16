@@ -26,11 +26,11 @@ jobs:
     # https://test.pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
       run: |
-        pip install codeql-wrapper
+        pip install -i https://test.pypi.org/simple/ codeql-wrapper
         codeql-wrapper --version
     
     - name: Run CodeQL Analysis
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
       run: |
-        codeql-wrapper --verbose analyze . --monorepo --upload-sarif --only-changed-files
+        codeql-wrapper --verbose analyze . --monorepo --upload-sarif --only-changed-files --max-workers 1
