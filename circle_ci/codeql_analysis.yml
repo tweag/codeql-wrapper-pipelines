@@ -24,17 +24,3 @@ jobs:
           name: Run CodeQL Analysis
           command: |
             codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
-          environment:
-            GITHUB_TOKEN: << pipeline.parameters.github_token >>
-
-parameters:
-  github_token:
-    type: env_var_name
-    default: GITHUB_TOKEN
-
-workflows:
-  version: 2
-  manual_codeql:
-    jobs:
-      - codeql-analysis:
-          github_token: GITHUB_TOKEN # This must be defined as a project/env var in CircleCI
