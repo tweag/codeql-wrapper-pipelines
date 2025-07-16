@@ -1,31 +1,24 @@
-trigger: none  # Manual trigger only, like workflow_dispatch on GitHub Actions
+trigger: none  # Manual trigger only
 
 pool:
   vmImage: 'ubuntu-latest'
 
-stages:
-- stage: CodeQLAnalysis
-  displayName: CodeQL Wrapper Monorepo JSON
-  jobs:
-  - job: RunCodeQL
-    displayName: Run CodeQL Wrapper Analysis
+steps:
+  - task: Checkout@1
+    displayName: 'Checkout source code'
 
-    steps:
-    - task: Checkout@1
-      displayName: 'Checkout source code'
+  - script: |
+      chmod +x ./install_python.sh
+      ./install_python.sh
+    displayName: 'Install Python'
 
-    - script: |
-        chmod +x ./install_python.sh
-        ./install_python.sh
-      displayName: 'Install Python'
+  - script: |
+      pip install -i https://test.pypi.org/simple/ codeql-wrapper
+      codeql-wrapper --version
+    displayName: 'Install CodeQL Wrapper'
 
-    - script: |
-        pip install -i https://test.pypi.org/simple/ codeql-wrapper
-        codeql-wrapper --version
-      displayName: 'Install CodeQL Wrapper'
-
-    - script: |
-        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
-      displayName: 'Run CodeQL Analysis'
-      env:
-        GITHUB_TOKEN: $(PAT)  # Ensure this secret is defined in Azure Pipeline variables
+  - script: |
+      codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
+    displayName: 'Run CodeQL Analysis'
+    env:
+      GITHUB_TOKEN: $(PAT)  # Define this secret in Azure Pipeline variables
