@@ -3,7 +3,7 @@
         {
             "path": "./monorepo/project-java-1",
             "build-mode": "manual",
-            "build-script": "./monorepo/build/project-java-1.sh",
+            "build-script": "./build/project-java-1.sh",
             "queries": [
                 "java-security-extended"
             ],

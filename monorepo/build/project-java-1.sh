@@ -1,5 +1,5 @@
 #!/bin/bash
 set -x
 
-cd ./build/project-java-1
+cd ../project-java-1
 mvn clean package
