@@ -24,3 +24,9 @@ jobs:
           name: Run CodeQL Analysis
           command: |
             codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
+
+workflows:
+  version: 2
+  codeql-workflow:
+    jobs:
+      - codeql-analysis
