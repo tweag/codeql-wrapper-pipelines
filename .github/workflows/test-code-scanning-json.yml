@@ -8,7 +8,7 @@ on:
 jobs:
   codeql-analysis:
     name: codeql-wrapper-monorepo-json
-    runs-on: ubuntu-latest
+    runs-on: larger-runner
     permissions:
       security-events: write
       contents: read
