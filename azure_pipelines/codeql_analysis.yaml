@@ -4,6 +4,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: Checkout@1
+  displayName: "Checkout source code"
+
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
