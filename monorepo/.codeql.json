@@ -1,7 +1,7 @@
 {
     "projects": [
         {
-            "path": "./project-java-1",
+            "path": "./monorepo/project-java-1",
             "build-mode": "manual",
             "build-script": "./build/project-java-1.sh",
             "queries": [
@@ -10,20 +10,20 @@
             "language": "java"
         },
         {
-            "path": "./project-java-1",
+            "path": "./monorepo/project-java-1",
             "language": "javascript"
         },
         {
-            "path": "./project-python-1",
+            "path": "./monorepo/project-python-1",
             "build-mode": "none"
         },
         {
-            "path": "./project-python-javascript-cpp",
+            "path": "./monorepo/project-python-javascript-cpp",
             "build-mode": "none",
             "language": "python"
         },
         {
-            "path": "./project-python-javascript-cpp",
+            "path": "./monorepo/project-python-javascript-cpp",
             "build-mode": "none",
             "language": "javascript"
         }
