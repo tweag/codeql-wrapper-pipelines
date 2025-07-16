@@ -1,24 +1,13 @@
-trigger: none  # Manual trigger only
+trigger: none
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: ubuntu-latest
 
 steps:
-  - task: Checkout@1
-    displayName: 'Checkout source code'
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
 
-  - script: |
-      chmod +x ./install_python.sh
-      ./install_python.sh
-    displayName: 'Install Python'
-
-  - script: |
-      pip install -i https://test.pypi.org/simple/ codeql-wrapper
-      codeql-wrapper --version
-    displayName: 'Install CodeQL Wrapper'
-
-  - script: |
-      codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
-    displayName: 'Run CodeQL Analysis'
-    env:
-      GITHUB_TOKEN: $(PAT)  # Define this secret in Azure Pipeline variables
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
