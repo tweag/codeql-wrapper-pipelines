@@ -20,12 +20,12 @@ jobs:
     - name: Remove .codeql.json
       run: rm -f .codeql.json      
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
+    - name: Install Python
+      run: |
+        chmod +x ./install_python.sh
+        ./install_python.sh
 
-    # https://test.pypi.org/project/codeql-wrapper/       
+    # https://test.pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
       run: |
         pip install -i https://test.pypi.org/simple/ codeql-wrapper

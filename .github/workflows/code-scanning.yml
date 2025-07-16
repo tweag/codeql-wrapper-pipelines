@@ -1,5 +1,5 @@
 # Workflow for scanning code with CodeQL
-name: codeql-wrapper-monorepo
+name: test-codeql-wrapper-monorepo
 
 # Trigger workflow
 on:
@@ -20,14 +20,16 @@ jobs:
     - name: Remove .codeql.json
       run: rm -f .codeql.json      
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
+    - name: Install Python
+      run: |
+        chmod +x ./install_python.sh
+        ./install_python.sh
 
-    # https://pypi.org/project/codeql-wrapper/        
+    # https://test.pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
-      run: pip install codeql-wrapper
+      run: |
+        pip install codeql-wrapper
+        codeql-wrapper --version
     
     - name: Run CodeQL Analysis
       env:
