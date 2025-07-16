@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   codeql-analysis:
     docker:
-      - image: cimg/python:3.10 # Use a suitable image for your Python & Linux environment
+      - image: cimg/python:3.13 # Use a suitable image for your Python & Linux environment
 
     steps:
       - checkout

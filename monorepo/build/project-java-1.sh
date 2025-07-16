@@ -1,5 +1,5 @@
 #!/bin/bash
 set -x
 
-cd ./monorepo/project-java-1
+cd ./build/project-java-1
 mvn clean package
