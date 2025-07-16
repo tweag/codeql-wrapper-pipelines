@@ -1,13 +1,14 @@
 trigger: none  # Manual trigger only, like workflow_dispatch on GitHub Actions
 
+pool:
+  vmImage: 'ubuntu-latest'
+
 stages:
 - stage: CodeQLAnalysis
   displayName: CodeQL Wrapper Monorepo JSON
   jobs:
   - job: RunCodeQL
     displayName: Run CodeQL Wrapper Analysis
-    pool:
-      vmImage: 'ubuntu-latest'
 
     steps:
     - task: Checkout@1
