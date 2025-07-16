@@ -1,19 +1,30 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+trigger: none  # Manual trigger only, like workflow_dispatch on GitHub Actions
 
-trigger:
-- main
+stages:
+- stage: CodeQLAnalysis
+  displayName: CodeQL Wrapper Monorepo JSON
+  jobs:
+  - job: RunCodeQL
+    displayName: Run CodeQL Wrapper Analysis
+    pool:
+      vmImage: 'ubuntu-latest'
 
-pool:
-  vmImage: ubuntu-latest
+    steps:
+    - task: Checkout@1
+      displayName: 'Checkout source code'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+    - script: |
+        chmod +x ./install_python.sh
+        ./install_python.sh
+      displayName: 'Install Python'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    - script: |
+        pip install -i https://test.pypi.org/simple/ codeql-wrapper
+        codeql-wrapper --version
+      displayName: 'Install CodeQL Wrapper'
+
+    - script: |
+        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
+      displayName: 'Run CodeQL Analysis'
+      env:
+        GITHUB_TOKEN: $(PAT)  # Ensure this secret is defined in Azure Pipeline variables
