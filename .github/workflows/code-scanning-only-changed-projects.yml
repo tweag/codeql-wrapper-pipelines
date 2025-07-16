@@ -1,0 +1,36 @@
+# Workflow for scanning code with CodeQL
+name: codeql-wrapper-monorepo-only-changed-files
+
+# Trigger workflow
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  codeql-analysis:
+    name: codeql-wrapper-monorepo-pr
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Install Python
+      run: |
+        chmod +x ./install_python.sh
+        ./install_python.sh
+
+    # https://test.pypi.org/project/codeql-wrapper/
+    - name: Install CodeQL Wrapper
+      run: |
+        pip install codeql-wrapper
+        codeql-wrapper --version
+    
+    - name: Run CodeQL Analysis
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      run: |
+        codeql-wrapper --verbose analyze . --monorepo --upload-sarif --only-changed-files
