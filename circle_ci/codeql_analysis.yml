@@ -22,11 +22,16 @@ jobs:
 
       - run:
           name: Run CodeQL Analysis
+          environment:
+            GITHUB_TOKEN: ${PAT} # Set PAT as environment variable in CircleCI project settings
           command: |
             codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
 
 workflows:
   version: 2
   codeql-workflow:
+    when:
+      and:
+        - equal: [manual, << pipeline.trigger_source >>]
     jobs:
       - codeql-analysis
