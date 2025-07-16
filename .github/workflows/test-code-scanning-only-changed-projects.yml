@@ -33,4 +33,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
       run: |
-        codeql-wrapper --verbose analyze . --monorepo --upload-sarif --only-changed-files --max-workers 1
+        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --max-workers 1
