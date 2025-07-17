@@ -5,6 +5,7 @@ name: codeql-wrapper-monorepo-only-changed-files
 on:
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   codeql-analysis:
