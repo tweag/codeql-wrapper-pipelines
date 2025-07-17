@@ -38,7 +38,7 @@ jobs:
         git fetch origin --depth=2 
         git diff $(git rev-parse origin/$GITHUB_BASE_REF) HEAD --name-only
 
-        echo $(git symbolic-ref HEAD)
+        echo $(git symbolic-ref HEADˆ)
         
         
         
