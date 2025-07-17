@@ -26,7 +26,7 @@ jobs:
     # https://test.pypi.org/project/codeql-wrapper/
     - name: Install CodeQL Wrapper
       run: |
-        pip install -i https://test.pypi.org/simple/ codeql-wrapper==0.2.1a7
+        pip install -i https://test.pypi.org/simple/ codeql-wrapper==0.2.1a8
         codeql-wrapper --version
     
     - name: Run CodeQL Analysis
