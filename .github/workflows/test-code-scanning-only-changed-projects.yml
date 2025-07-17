@@ -36,13 +36,14 @@ jobs:
         echo "$GITHUB_BASE_REF"
         git fetch origin $GITHUB_BASE_REF --depth=2
         git diff $(git rev-parse origin/$GITHUB_BASE_REF) HEAD --name-only
-        if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            # For pull requests, compare against the base branch
-            git fetch origin "$GITHUB_BASE_REF" --depth=2 
-            codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "origin/$GITHUB_BASE_REF" --max-workers 1
-        else
-            # For push events, ensure enough history is available
-            git fetch origin --depth=2 
-            codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "origin/main" --max-workers 1
-        fi
+        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "origin/main" --max-workers 1
+        # if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+        #     # For pull requests, compare against the base branch
+        #     git fetch origin "$GITHUB_BASE_REF" --depth=2 
+        #     codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "origin/$GITHUB_BASE_REF" --max-workers 1
+        # else
+        #     # For push events, ensure enough history is available
+        #     git fetch origin --depth=2 
+        #     codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "origin/main" --max-workers 1
+        # fi
         
