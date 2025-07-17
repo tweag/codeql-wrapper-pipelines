@@ -20,4 +20,4 @@ fi
 
 # Upgrade pip, setuptools, and wheel
 echo "Upgrading pip, setuptools, and wheel..."
-python3 -m pip install --upgrade pip setuptools wheel packaging
+python3 -m pip install --upgrade pip setuptools wheel packaging gitpython
