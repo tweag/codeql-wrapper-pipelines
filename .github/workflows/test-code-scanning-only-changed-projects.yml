@@ -37,7 +37,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT }}
       run: |        
         echo "Base ref: $GITHUB_BASE_REF"
-        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "$GITHUB_BASE_REF" --max-workers 1 
+        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref origin/"$GITHUB_BASE_REF" --max-workers 1 
         
       
         # if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
