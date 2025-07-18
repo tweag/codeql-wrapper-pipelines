@@ -3,6 +3,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+
 def initialize_database():
     connection = sqlite3.connect("example.db")
     cursor = connection.cursor()
