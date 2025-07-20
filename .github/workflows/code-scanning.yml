@@ -4,7 +4,17 @@ name: codeql-wrapper-monorepo
 # Trigger workflow
 on:
   workflow_dispatch:
-
+    inputs:
+      use_json:
+        description: 'Use .codeql.yml configuration file?'
+        required: true
+        type: boolean
+        default: true
+      test_mode:
+        description: 'Run in test mode?'
+        required: true
+        type: boolean
+        default: true
 jobs:
   codeql-analysis:
     name: codeql-wrapper-monorepo
@@ -18,7 +28,8 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Remove .codeql.json
-      run: rm -f .codeql.json      
+      if: ${{ github.event.inputs.use_json == 'false' }}
+      run: rm -f .codeql.json
 
     - name: Install Python
       run: |
@@ -26,7 +37,16 @@ jobs:
         ./install_python.sh
 
     # https://test.pypi.org/project/codeql-wrapper/
-    - name: Install CodeQL Wrapper
+    - name: Install CodeQL Wrapper (test mode)
+      if: ${{ github.event.inputs.test_mode == 'true' }}
+      run: |
+        pip install -i https://test.pypi.org/simple/ codeql-wrapper
+        codeql-wrapper --version
+
+
+    # https://pypi.org/project/codeql-wrapper/
+    - name: Install CodeQL Wrapper (production mode)
+      if: ${{ github.event.inputs.test_mode == 'false' }}
       run: |
         pip install codeql-wrapper
         codeql-wrapper --version
