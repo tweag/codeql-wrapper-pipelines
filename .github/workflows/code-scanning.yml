@@ -15,6 +15,11 @@ on:
         required: true
         type: boolean
         default: true
+      verbose_mode:
+        description: 'Run in verbose mode?'
+        required: true
+        type: boolean
+        default: true        
 jobs:
   codeql-analysis:
     name: codeql-wrapper-monorepo
@@ -55,4 +60,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
       run: |
-        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
+        codeql-wrapper ${{ github.event.inputs.verbose_mode == 'true' && '--verbose' || '' }} analyze ./monorepo --monorepo --upload-sarif
