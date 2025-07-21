@@ -1,13 +1,13 @@
 pipeline:
   name: Monorepo CodeQL Analysis
   identifier: codeql_analysis
-  projectIdentifier: default_project # Replace with your actual project identifier
-  orgIdentifier: default # Replace with your actual org identifier
+  projectIdentifier: default_project
+  orgIdentifier: default
   properties:
     ci:
       codebase:
         build: <+input>
-        connectorRef: monorepo # Create a connector to the monorepo
+        connectorRef: monorepo
         repoName: poc-codeql-wrapper
   stages:
     - stage:
@@ -43,9 +43,9 @@ pipeline:
                   spec:
                     shell: Bash
                     envVariables:
-                      GITHUB_TOKEN: <+secrets.getValue("PAT")> # Replace with your actual GitHub PAT secret
+                      GITHUB_TOKEN: <+secrets.getValue("PAT")>
                     command: |
-                      codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
+                      codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif 
           platform:
             os: Linux
             arch: Amd64
