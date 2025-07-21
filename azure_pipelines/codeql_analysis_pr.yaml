@@ -19,7 +19,7 @@ steps:
       codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif \
         --only-changed-files \
         --base-ref "$(System.PullRequest.TargetBranch)" \
-        --ref="$(Build.SourceBranch)" \
+        --ref="origin/$(Build.SourceBranch)" \
         --max-workers 1
     displayName: "Run CodeQL Analysis"
     env:
