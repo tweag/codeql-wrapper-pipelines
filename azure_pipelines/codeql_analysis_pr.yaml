@@ -21,12 +21,12 @@ steps:
       git ls-remote https://github.com/ModusCreate-fernandomatsuo-GHAS/poc-codeql-wrapper.git
       echo "GH login finish"
       echo "--base-ref $(System.PullRequest.TargetBranch)"
-      echo "--ref=$(System.PullRequest.SourceBranch)"
+      echo "--ref=$(Build.SourceBranch)"
       echo "start wrapper"
       codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif \
         --only-changed-files \
         --base-ref "$(System.PullRequest.TargetBranch)" \
-        --ref="$(System.PullRequest.SourceBranch)" \
+        --ref="$(Build.SourceBranch)" \
         --max-workers 1
     displayName: "Run CodeQL Analysis"
     env:
