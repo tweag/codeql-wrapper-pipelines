@@ -49,11 +49,11 @@ jobs:
     - name: Install CodeQL Wrapper (test mode)
       if: ${{ github.event.inputs.test_mode == 'true' }}
       run: |
-        if [ -n "${{ github.event.inputs.force_version }}" ]; then
+        #if [ -n "${{ github.event.inputs.force_version }}" ]; then
           pip install -i https://test.pypi.org/simple/ codeql-wrapper==${{ github.event.inputs.force_version }}
-        else
-          pip install -i https://test.pypi.org/simple/ codeql-wrapper
-        fi
+        #else
+        #  pip install -i https://test.pypi.org/simple/ codeql-wrapper
+        #fi
         codeql-wrapper --version
 
 
