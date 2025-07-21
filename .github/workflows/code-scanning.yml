@@ -20,6 +20,10 @@ on:
         required: true
         type: boolean
         default: true        
+      force_version:
+        description: 'Force codeql-wrapper version?'
+        required: false
+        type: string     
 jobs:
   codeql-analysis:
     name: codeql-wrapper-monorepo
@@ -45,7 +49,11 @@ jobs:
     - name: Install CodeQL Wrapper (test mode)
       if: ${{ github.event.inputs.test_mode == 'true' }}
       run: |
-        pip install -i https://test.pypi.org/simple/ codeql-wrapper
+        if [ -n "${{ github.event.inputs.force_version }}" ]; then
+          pip install -i https://test.pypi.org/simple/ codeql-wrapper==${{ github.event.inputs.force_version }}
+        else
+          pip install -i https://test.pypi.org/simple/ codeql-wrapper
+        fi
         codeql-wrapper --version
 
 
@@ -53,7 +61,11 @@ jobs:
     - name: Install CodeQL Wrapper (production mode)
       if: ${{ github.event.inputs.test_mode == 'false' }}
       run: |
-        pip install codeql-wrapper
+        if [ -n "${{ github.event.inputs.force_version }}" ]; then
+          pip install codeql-wrapper==${{ github.event.inputs.force_version }}
+        else
+          pip install codeql-wrapper
+        fi
         codeql-wrapper --version
     
     - name: Run CodeQL Analysis
