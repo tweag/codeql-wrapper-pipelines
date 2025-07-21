@@ -1,0 +1,33 @@
+version: 2.1
+
+jobs:
+  codeql-analysis:
+    docker:
+      - image: cimg/python:3.13 # Use a suitable image for your Python & Linux environment
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Python (if needed)
+          command: |
+            chmod +x ./install_python.sh
+            ./install_python.sh
+
+      - run:
+          name: Install CodeQL Wrapper
+          command: |
+            pip install -i https://test.pypi.org/simple/ codeql-wrapper
+            codeql-wrapper --version
+
+      - run:
+          name: Run CodeQL Analysis
+          command: |
+            export GITHUB_TOKEN=${PAT} # Set PAT as environment variable in CircleCI project settings
+            codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "<+trigger.targetBranch>" --ref="<+trigger.gitRef>" --max-workers 1
+
+workflows:
+  version: 2
+  codeql-workflow:
+    jobs:
+      - codeql-analysis

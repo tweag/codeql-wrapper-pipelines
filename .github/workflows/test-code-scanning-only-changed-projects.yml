@@ -34,6 +34,13 @@ jobs:
     - name: Run CodeQL Analysis
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
+        GITHUB_BASE_REF: ${{ github.base_ref }}
+        GITHUB_REF: ${{ github.ref }}
       run: |
-        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "$GITHUB_BASE_REF" --max-workers 1
-        
+        codeql-wrapper --verbose analyze ./monorepo \
+          --monorepo \
+          --upload-sarif \
+          --only-changed-files \
+          --base-ref "$GITHUB_BASE_REF" \
+          --ref "$GITHUB_REF" \
+          --max-workers 1
