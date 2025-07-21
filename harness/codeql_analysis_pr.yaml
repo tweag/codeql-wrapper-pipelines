@@ -29,6 +29,23 @@ pipeline:
                       ./install_python.sh
               - step:
                   type: Run
+                  name: echo codebase
+                  identifier: echo_codebase
+                  spec:
+                    shell: Bash
+                    command: |-
+                      echo <+codebase.repoUrl>
+                      echo <+codebase.prNumber>
+                      echo <+codebase.prTitle>
+                      echo <+codebase.pullRequestLink>
+                      echo <+codebase.targetBranch>
+                      echo <+codebase.sourceBranch>
+                      echo <+codebase.commitSha>
+                      echo <+codebase.gitUserId>
+                      echo <+codebase.gitUserEmail>
+                      echo <+codebase.state>
+              - step:
+                  type: Run
                   name: Install CodeQL Wrapper
                   identifier: install_codeql_wrapper
                   spec:
