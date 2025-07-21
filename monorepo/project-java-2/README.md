@@ -42,5 +42,5 @@ Test-specific resources can be placed in the `src/test/resources` directory.
 For more information, please refer to the individual files and directories in the project structure.
 
 ```
-
+test
 This README file provides an overview of the project structure, instructions for running the application and tests, information about dependencies, and details about the resources directory.
