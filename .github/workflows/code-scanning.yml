@@ -21,7 +21,7 @@ on:
         type: boolean
         default: true        
       force_version:
-        description: 'Force codeql-wrapper version?'
+        description: 'Force codeql-wrapper version? (Ex: 0.2.1a25)'
         required: false
         type: string     
 jobs:
