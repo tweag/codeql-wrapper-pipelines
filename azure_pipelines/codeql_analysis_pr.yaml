@@ -16,6 +16,7 @@ steps:
     displayName: "Install CodeQL Wrapper"
 
   - script: |
+      git config --global url."https://x-access-token:$(PAT)@github.com/".insteadOf "https://github.com/"
       codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif \
         --only-changed-files \
         --base-ref "$(System.PullRequest.TargetBranch)" \
