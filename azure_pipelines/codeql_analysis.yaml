@@ -1,4 +1,6 @@
-trigger: none # This pipeline is manually triggered
+# This pipeline is manually triggered
+trigger: none
+pr: none
 
 pool:
   vmImage: ubuntu-latest
