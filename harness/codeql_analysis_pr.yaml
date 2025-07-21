@@ -1,6 +1,6 @@
 pipeline:
   name: Monorepo CodeQL Analysis - PR
-  identifier: codeql_analysis
+  identifier: codeql_analysis_pr
   projectIdentifier: default_project
   orgIdentifier: default
   properties:
