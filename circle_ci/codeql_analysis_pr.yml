@@ -24,7 +24,17 @@ jobs:
           name: Run CodeQL Analysis
           command: |
             export GITHUB_TOKEN=${PAT} # Set PAT as environment variable in CircleCI project settings
-            codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "<+trigger.targetBranch>" --ref="<+trigger.gitRef>" --max-workers 1
+            export GITHUB_BASE_REF=<< pipeline.event.github.pull_request.base.ref >>
+            export GITHUB_REF=<< pipeline.event.github.pull_request.head.ref >>
+            echo "Base ref: $GITHUB_BASE_REF"
+            echo "Ref: $GITHUB_REF"
+            codeql-wrapper --verbose analyze ./monorepo \
+              --monorepo \
+              --upload-sarif \
+              --only-changed-files \
+              --base-ref origin/"$GITHUB_BASE_REF" \
+              --ref "$GITHUB_REF" \
+              --max-workers 1
 
 workflows:
   version: 2
