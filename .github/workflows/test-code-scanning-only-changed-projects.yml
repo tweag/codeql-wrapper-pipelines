@@ -30,7 +30,10 @@ jobs:
       run: |
         pip install -i https://test.pypi.org/simple/ codeql-wrapper
         codeql-wrapper --version
-    
+    - name: Show variables
+      run: |
+        echo "PR_SHA: ${{ github.event.pull_request.head.sha }}"
+        echo "GITHUB_SHA: ${{ github.sha }}"
     - name: Run CodeQL Analysis
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
