@@ -14,11 +14,11 @@ The CodeQL Wrapper has been implemented and tested on the following CI/CD platfo
 
 | Platform | Full Scan | Pull Request | Status |
 |----------|-----------|--------------|--------|
-| GitHub Actions | ✅ | ✅ | ✅ TESTED |
-| Azure Pipelines | ✅ | ✅ | ✅ TESTED |
-| Circle CI | ✅ | ✅ | ✅ TESTED |
-| Harness | ✅ | ✅ | ✅ TESTED |
-| Jenkins | 🔄 | 🔄 | 🚧 TBD |
+| GitHub Actions | ✅ | ✅ | ✅ |
+| Azure Pipelines | ✅ | ✅ | ✅ |
+| Circle CI | ✅ | ✅ | ✅ |
+| Harness | ✅ | ✅ | ✅ |
+| Jenkins | 🔄 | 🔄 | 🚧 |
 
 **Legend:**
 
