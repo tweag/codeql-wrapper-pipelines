@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    
+    environment {
+        GITHUB_TOKEN = credentials('PAT')
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Setup Python') {
+            steps {
+                sh '''
+                    python3 -m pip install --upgrade pip
+                    pip3 install codeql-wrapper
+                '''
+            }
+        }
+        
+        stage('CodeQL Analysis') {
+            steps {
+                sh '''
+                    codeql-wrapper analyze ${WORKSPACE} \
+                      --monorepo \
+                      --verbose \
+                      --upload-sarif \
+                      --repository owner/repository \
+                      --commit-sha ${GIT_COMMIT} \
+                      --ref ${GIT_BRANCH}
+                '''
+            }
+        }
+    }
+    
+    post {
+        always {
+            archiveArtifacts artifacts: 'codeql-results/**/*', allowEmptyArchive: true
+        }
+    }
+}
