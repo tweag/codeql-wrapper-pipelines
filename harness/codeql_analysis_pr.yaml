@@ -45,6 +45,7 @@ pipeline:
                     envVariables:
                       GITHUB_TOKEN: <+secrets.getValue("PAT")>
                     command: |
+                      echo <+codebase.commitSha>
                       codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "origin/<+codebase.targetBranch>" --ref="refs/pull/<+codebase.prNumber>/merge" --max-workers 1
           platform:
             os: Linux

@@ -28,6 +28,7 @@ jobs:
             export GITHUB_REF=refs/pull/<< pipeline.event.github.pull_request.number >>/merge
             echo "Base ref: $GITHUB_BASE_REF"
             echo "Ref: $GITHUB_REF"
+            echo "Commit SHA: $CIRCLE_SHA1"
             codeql-wrapper --verbose analyze ./monorepo \
               --monorepo \
               --upload-sarif \
