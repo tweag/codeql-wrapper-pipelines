@@ -16,6 +16,7 @@ steps:
     displayName: "Install CodeQL Wrapper"
 
   - script: |
+      echo "Commit SHA: $(System.PullRequest.SourceCommitId)"
       codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif \
         --only-changed-files \
         --base-ref "$(System.PullRequest.TargetBranch)" \
