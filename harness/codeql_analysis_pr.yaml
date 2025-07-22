@@ -47,6 +47,7 @@ pipeline:
                     command: |
                       export GITHUB_TOKEN=<+secrets.getValue("PAT")>
                       curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
+                      git fetch -v -- origin refs/pull/34/merge
                       codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --only-changed-files --base-ref "origin/<+codebase.targetBranch>" --ref="refs/pull/<+codebase.prNumber>/merge" --max-workers 1
           platform:
             os: Linux
