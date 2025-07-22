@@ -72,4 +72,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
       run: |
+        curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
         codeql-wrapper ${{ github.event.inputs.verbose_mode == 'true' && '--verbose' || '' }} analyze ./monorepo --monorepo --upload-sarif

@@ -24,6 +24,7 @@ jobs:
           name: Run CodeQL Analysis
           command: |
             export GITHUB_TOKEN=${PAT} # Set PAT as environment variable in CircleCI project settings
+            curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
             codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
 
 workflows:

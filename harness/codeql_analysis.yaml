@@ -45,7 +45,8 @@ pipeline:
                     envVariables:
                       GITHUB_TOKEN: <+secrets.getValue("PAT")>
                     command: |
-                      codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif 
+                      curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
+                      codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif
           platform:
             os: Linux
             arch: Amd64

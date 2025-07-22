@@ -26,6 +26,7 @@ jobs:
             export GITHUB_TOKEN=${PAT} # Set PAT as environment variable in CircleCI project settings
             export GITHUB_BASE_REF=<< pipeline.event.github.pull_request.base.ref >>
             export GITHUB_REF=refs/pull/<< pipeline.event.github.pull_request.number >>/merge
+            curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
             codeql-wrapper --verbose analyze ./monorepo \
               --monorepo \
               --upload-sarif \
