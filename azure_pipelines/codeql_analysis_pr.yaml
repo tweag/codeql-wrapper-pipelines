@@ -19,8 +19,8 @@ steps:
       echo "Commit SHA: $(System.PullRequest.SourceCommitId)"
       codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif \
         --only-changed-files \
-        --base-ref "$(System.PullRequest.TargetBranch)" \
-        --ref="origin/$(Build.SourceBranch)" \
+        --base-ref "origin/$(System.PullRequest.TargetBranch)" \
+        --ref="$(Build.SourceBranch)" \
         --max-workers 1
     displayName: "Run CodeQL Analysis"
     env:
