@@ -1,8 +1,5 @@
 # CodeQL Wrapper - Pipeline Examples
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python versions](https://img.shields.io/pypi/pyversions/codeql-wrapper.svg)](https://pypi.org/project/codeql-wrapper/)
-
 A collection of pipeline examples demonstrating how to use the CodeQL Wrapper across different CI/CD platforms.
 
 ## Overview
