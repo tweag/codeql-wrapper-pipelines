@@ -10,13 +10,13 @@ This repository contains practical examples and templates for integrating the **
 
 The CodeQL Wrapper has been implemented and tested on the following CI/CD platforms:
 
-| Platform        | Full Scan | Pull Request | Push | Status |
-|-----------------|-----------|--------------|------|--------|
-| GitHub Actions  | ✅        | ✅           | 🚧   | ✅     |
-| Azure Pipelines | ✅        | ✅           | 🚧   | ✅     |
-| Circle CI       | ✅        | ✅           | 🚧   | ✅     |
-| Harness         | ✅        | ✅           | 🚧   | ✅     |
-| Jenkins         | 🔄        | 🔄           | 🚧   | 🚧     |
+| Platform        | Full Scan | Pull Request | Push |
+|-----------------|-----------|--------------|------|
+| GitHub Actions  | ✅        | ✅           | 🚧   |
+| Azure Pipelines | ✅        | ✅           | 🚧   |
+| Circle CI       | ✅        | ✅           | 🚧   |
+| Harness         | ✅        | ✅           | 🚧   |
+| Jenkins         | 🔄        | 🔄           | 🚧   |
 
 **Legend:**
 
