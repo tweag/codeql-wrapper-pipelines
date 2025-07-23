@@ -12,6 +12,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+  - checkout: self
+    fetchDepth: 0
+
   - script: |
       chmod +x ./install_python.sh
       ./install_python.sh
