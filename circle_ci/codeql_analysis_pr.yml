@@ -25,16 +25,26 @@ jobs:
           name: Run CodeQL Analysis
           command: |
             export GITHUB_TOKEN=${PAT} # Set PAT as environment variable in CircleCI project settings
-            #export GITHUB_BASE_REF=<< pipeline.event.github.pull_request.base.ref >>
-            #export GITHUB_REF=refs/pull/<< pipeline.event.github.pull_request.number >>/merge
+            # ----------------------------
+            # set variables for pull request context
+            # ----------------------------
+            if [ -n "$CIRCLE_PULL_REQUEST" ]; then
+              echo "Running in a pull request context"
+              PR_NUMBER=$(basename $CIRCLE_PULL_REQUEST)
+              REPO_PATH=$(echo "$CIRCLE_PULL_REQUEST" | sed -E 's|https://github.com/([^/]+/[^/]+)/pull/[0-9]+|\1|')
+              BASE_REF=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+                https://api.github.com/repos/${REPO_PATH}/pulls/${PR_NUMBER} \
+                | jq -r .base.ref)
+              REF=refs/pull/${PR_NUMBER}/merge
+            fi
             printenv
             curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
             codeql-wrapper --verbose analyze ./monorepo \
               --monorepo \
               --upload-sarif \
               --only-changed-files \
-              --base-ref origin/"$GITHUB_BASE_REF" \
-              --ref "$GITHUB_REF"
+              --base-ref origin/"$BASE_REF" \
+              --ref "$REF"
 
 workflows:
   version: 2
