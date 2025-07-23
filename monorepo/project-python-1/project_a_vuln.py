@@ -1,3 +1,5 @@
+# This file is part of a CodeQL project that tests for SQL injection vulnerabilities.
+
 import sqlite3
 from flask import Flask, request
 
