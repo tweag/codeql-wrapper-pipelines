@@ -2,7 +2,6 @@ pipeline {
     agent {
         docker {
             image 'python:3.11' // Python comes pre-installed
-            args '-u root'
         }
     }
     
@@ -19,7 +18,9 @@ pipeline {
         
         stage('Setup Python') {
             steps {
-                sh '''                
+                sh '''      
+                    #!/bin/bash
+                    
                     python3 -m pip install --upgrade pip
                     pip3 install codeql-wrapper
                 '''
@@ -29,6 +30,8 @@ pipeline {
         stage('CodeQL Analysis') {
             steps {
                 sh '''
+                    #!/bin/bash
+                    
                     codeql-wrapper analyze ${WORKSPACE} \
                       --monorepo \
                       --verbose \
