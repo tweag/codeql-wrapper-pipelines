@@ -1,6 +1,6 @@
 inputSet:
-  name: push
-  identifier: push
+  name: monorepo input sets pr
+  identifier: monorepo_input_sets
   orgIdentifier: default
   projectIdentifier: default_project
   pipeline:
@@ -9,6 +9,6 @@ inputSet:
       ci:
         codebase:
           build:
-            type: branch
+            type: PR
             spec:
-              branch: <+input>
+              number: <+trigger.prNumber>
