@@ -32,7 +32,7 @@ steps:
         --monorepo \
         --upload-sarif \
         --only-changed-files \
-        --ref origin/main --base-ref "HEAD^"
+        --ref refs/remotes/origin/main --base-ref "HEAD^"
 
     displayName: "Run CodeQL Analysis"
     env:
