@@ -28,7 +28,6 @@ steps:
 
   - script: |
       curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
-      printenv
       codeql-wrapper --verbose analyze ./monorepo \
         --monorepo \
         --upload-sarif \
