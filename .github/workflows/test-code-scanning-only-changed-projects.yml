@@ -3,9 +3,12 @@ name: codeql-wrapper-monorepo-only-changed-files
 
 # Trigger workflow
 on:
+  push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
-  push:
+
 jobs:
   codeql-analysis:
     name: codeql-wrapper-monorepo-pr
