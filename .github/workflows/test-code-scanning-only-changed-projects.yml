@@ -38,7 +38,4 @@ jobs:
         codeql-wrapper --verbose analyze ./monorepo \
           --monorepo \
           --upload-sarif \
-          --only-changed-files \
-          --max-workers 1
-
-
+          --only-changed-files

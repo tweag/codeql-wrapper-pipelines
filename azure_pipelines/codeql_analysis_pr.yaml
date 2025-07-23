@@ -11,17 +11,23 @@ steps:
     displayName: "Install Python"
 
   - script: |
+      # https://test.pypi.org/project/codeql-wrapper/
       pip install -i https://test.pypi.org/simple/ codeql-wrapper
       codeql-wrapper --version
     displayName: "Install CodeQL Wrapper"
 
   - script: |
       curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
-      codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif \
-        --only-changed-files \
-        --base-ref "origin/$(System.PullRequest.TargetBranch)" \
-        --ref="$(Build.SourceBranch)" \
-        --max-workers 1
+      # codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif \
+      #   --only-changed-files \
+      #   --base-ref "origin/$(System.PullRequest.TargetBranch)" \
+      #   --ref="$(Build.SourceBranch)" \
+      #   --max-workers 1
+      codeql-wrapper --verbose analyze ./monorepo \
+        --monorepo \
+        --upload-sarif \
+        --only-changed-files
+
     displayName: "Run CodeQL Analysis"
     env:
       GITHUB_TOKEN: $(PAT) # Define this secret in Azure Pipeline variables

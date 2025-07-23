@@ -34,6 +34,7 @@ pipeline:
                   spec:
                     shell: Bash
                     command: |
+                      # https://test.pypi.org/project/codeql-wrapper/
                       pip install -i https://test.pypi.org/simple/ codeql-wrapper
                       codeql-wrapper --version
               - step:

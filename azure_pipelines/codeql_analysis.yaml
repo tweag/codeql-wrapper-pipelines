@@ -12,6 +12,7 @@ steps:
     displayName: "Install Python"
 
   - script: |
+      # https://test.pypi.org/project/codeql-wrapper/
       pip install -i https://test.pypi.org/simple/ codeql-wrapper
       codeql-wrapper --version
     displayName: "Install CodeQL Wrapper"
