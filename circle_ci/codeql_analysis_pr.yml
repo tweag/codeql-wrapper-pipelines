@@ -35,19 +35,19 @@ jobs:
               BASE_REF=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
                 https://api.github.com/repos/${REPO_PATH}/pulls/${PR_NUMBER} \
                 | jq -r .base.ref)
-              REF=refs/pull/${PR_NUMBER}/merge
+              BASE_REF="origin/${BASE_REF}"
+              REF="refs/pull/${PR_NUMBER}/merge"
             else
               echo "Running in a non-pull request context"
-              BASE_REF=$CIRCLE_BRANCH
-              REF="HEAD^"
+              BASE_REF="HEAD^"
+              REF=$CIRCLE_BRANCH
             fi
-            printenv
             curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
             codeql-wrapper --verbose analyze ./monorepo \
               --monorepo \
               --upload-sarif \
               --only-changed-files \
-              --base-ref origin/"$BASE_REF" \
+              --base-ref "$BASE_REF" \
               --ref "$REF"
 
 workflows:
