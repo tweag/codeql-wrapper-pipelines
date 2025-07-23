@@ -1,5 +1,12 @@
 # This pipeline is manually triggered
-trigger: none
+trigger:
+  branches:
+    include:
+      - "*"
+pr:
+  branches:
+    include:
+      - "*"
 
 pool:
   vmImage: ubuntu-latest
