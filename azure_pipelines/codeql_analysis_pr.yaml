@@ -30,6 +30,7 @@ steps:
       #   --base-ref "origin/$(System.PullRequest.TargetBranch)" \
       #   --ref="$(Build.SourceBranch)" \
       #   --max-workers 1
+      printenv
       codeql-wrapper --verbose analyze ./monorepo \
         --monorepo \
         --upload-sarif \
