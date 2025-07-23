@@ -1,5 +1,5 @@
 # This file is part of a CodeQL project that tests for SQL injection vulnerabilities.
-# 3
+# 5
 
 import sqlite3
 from flask import Flask, request
