@@ -32,7 +32,8 @@ steps:
       codeql-wrapper --verbose analyze ./monorepo \
         --monorepo \
         --upload-sarif \
-        --only-changed-files
+        --only-changed-files \
+        --ref main --base-ref = "HEAD^"
 
     displayName: "Run CodeQL Analysis"
     env:
