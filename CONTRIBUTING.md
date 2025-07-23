@@ -1,4 +1,4 @@
-# Contributing to CodeQL Wrapper - Pipeline Examples
+# Contributing to the project
 
 Thank you for your interest in contributing! We welcome contributions from the community and appreciate your efforts to help improve this project.
 
