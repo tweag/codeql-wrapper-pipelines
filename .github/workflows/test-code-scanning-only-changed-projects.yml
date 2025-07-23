@@ -39,8 +39,6 @@ jobs:
           --monorepo \
           --upload-sarif \
           --only-changed-files \
-          --base-ref origin/"$GITHUB_BASE_REF" \
-          --ref "$GITHUB_REF" \
           --max-workers 1
 
 
