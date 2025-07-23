@@ -24,23 +24,6 @@ The CodeQL Wrapper has been implemented and tested on the following CI/CD platfo
 * 🔄 In development
 * 🚧 To be implemented
 
-## Prerequisites
-
-* Python 3.8 or higher
-* Appropriate permissions for your CI/CD platform
-* GitHub token (for GitHub integration)
-
-## Repository Structure
-
-```
-poc-codeql-wrapper/
-├── github-actions/          # GitHub Actions workflows
-├── azure-pipelines/         # Azure Pipelines templates
-├── circleci/               # CircleCI configuration
-├── harness/                # Harness pipeline examples
-└── jenkins/                # Jenkins pipeline scripts (coming soon)
-```
-
 ## Documentation
 
 For complete documentation, installation instructions, and advanced configuration options, visit the main CodeQL Wrapper repository:
