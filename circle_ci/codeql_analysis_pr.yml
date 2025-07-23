@@ -39,8 +39,8 @@ jobs:
               REF="refs/pull/${PR_NUMBER}/merge"
             else
               echo "Running in a non-pull request context"
-              BASE_REF="HEAD^"
-              REF=""
+              #BASE_REF="HEAD^"
+              #REF=""
             fi
             curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
             codeql-wrapper --verbose analyze ./monorepo \
