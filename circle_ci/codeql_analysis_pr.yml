@@ -40,7 +40,7 @@ jobs:
             else
               echo "Running in a non-pull request context"
               BASE_REF="HEAD^"
-              REF=$CIRCLE_BRANCH
+              REF=""
             fi
             curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
             codeql-wrapper --verbose analyze ./monorepo \
