@@ -36,6 +36,10 @@ jobs:
                 https://api.github.com/repos/${REPO_PATH}/pulls/${PR_NUMBER} \
                 | jq -r .base.ref)
               REF=refs/pull/${PR_NUMBER}/merge
+            else
+              echo "Running in a non-pull request context"
+              BASE_REF=$CIRCLE_BRANCH
+              REF="HEAD^"
             fi
             printenv
             curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
