@@ -1,0 +1,14 @@
+inputSet:
+  name: monorepo input sets push
+  identifier: monorepo_input_sets_push
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: codeql_analysis_pr
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+input>
