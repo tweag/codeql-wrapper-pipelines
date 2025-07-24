@@ -45,7 +45,9 @@ pipeline {
     
     post {
         always {
-            archiveArtifacts artifacts: 'codeql-results/**/*', allowEmptyArchive: true
+            node {
+                archiveArtifacts artifacts: 'codeql-results/**/*', allowEmptyArchive: true
+            }
         }
     }
 }
