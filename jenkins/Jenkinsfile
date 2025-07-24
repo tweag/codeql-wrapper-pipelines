@@ -25,7 +25,7 @@ pipeline {
                     python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython==3.1.45
                     pip install --extra-index-url https://test.pypi.org/simple/ codeql-wrapper==0.2.15
 
-                    codeql-wrapper analyze ./monorepo --monorepo --upload-sarif --verbose
+                    codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif 
                 '''
             }
         }
