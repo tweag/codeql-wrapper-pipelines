@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.11' // Python comes pre-installed
+        }
+    }
     
     environment {
         GITHUB_TOKEN = credentials('codeql-wrapper-token')
