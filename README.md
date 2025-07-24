@@ -49,3 +49,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ***
 
 **Note:** This repository contains pipeline examples only. For the actual CodeQL Wrapper tool, please visit the main repository linked above.
+
+***
+
+<div align="center">
+
+**Made with ❤️ by the Modus Create team**
+
+</div>
