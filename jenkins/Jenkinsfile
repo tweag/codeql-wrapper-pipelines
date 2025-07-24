@@ -20,7 +20,7 @@ pipeline {
                     . venv/bin/activate
                     
                     echo "Upgrading pip, setuptools, and wheel..."
-                    python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython
+                    python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython==3.1.44
                     
                     python3 -m pip install --upgrade pip
                      pip install -i https://test.pypi.org/simple/ --force-reinstall codeql-wrapper
