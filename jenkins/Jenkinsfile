@@ -19,7 +19,7 @@ pipeline {
                     python3 -m venv venv
                     . venv/bin/activate
 
-                    pip uninstall codeql-wrapper
+                    pip uninstall codeql-wrapper -y
                     
                     echo "Upgrading pip, setuptools, and wheel..."
                     python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython==3.1.44
