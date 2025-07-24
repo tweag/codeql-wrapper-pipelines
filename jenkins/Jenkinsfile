@@ -37,7 +37,7 @@ pipeline {
 
                         curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
 
-                        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --ref $CHANGE_BRANCH --base-ref $CHANGE_TARGET
+                        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --ref $CHANGE_BRANCH --base-ref $CHANGE_TARGET --force-install
                     '''
                 }
             }
