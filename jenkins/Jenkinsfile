@@ -22,7 +22,7 @@ pipeline {
                     pip uninstall codeql-wrapper -y
                     
                     echo "Upgrading pip, setuptools, and wheel..."
-                    python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython==3.1.44
+                    python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython==3.1.45
                     pip install -i https://test.pypi.org/simple/ --force-reinstall codeql-wrapper==0.2.15
 
                     codeql-wrapper analyze ./monorepo --monorepo --upload-sarif --verbose
