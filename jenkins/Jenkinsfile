@@ -33,13 +33,7 @@ pipeline {
                 sh '''#!/bin/bash
                     . venv/bin/activate
                     
-                    codeql-wrapper analyze ${WORKSPACE} \
-                      --monorepo \
-                      --verbose \
-                      --upload-sarif \
-                      --repository owner/repository \
-                      --commit-sha ${GIT_COMMIT} \
-                      --ref ${GIT_BRANCH}
+                    codeql-wrapper analyze ./monorepo --monorepo --upload-sarif --verbose
                 '''
             }
         }
