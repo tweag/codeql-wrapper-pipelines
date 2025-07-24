@@ -23,7 +23,7 @@ pipeline {
                     python3 -m pip install --upgrade pip setuptools wheel packaging gitpython
                     
                     python3 -m pip install --upgrade pip
-                    pip3 install codeql-wrapper
+                     pip install -i https://test.pypi.org/simple/ codeql-wrapper
                 '''
             }
         }
