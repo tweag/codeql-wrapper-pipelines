@@ -24,8 +24,6 @@ pipeline {
                     echo "Upgrading pip, setuptools, and wheel..."
                     python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython==3.1.45
                     pip install --extra-index-url https://test.pypi.org/simple/ codeql-wrapper==0.2.15
-
-                    codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif 
                 '''
             }
         }
@@ -34,8 +32,10 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                     . venv/bin/activate
+                    echo "Base Ref (Target Branch): ${env.CHANGE_TARGET}"
+                    echo "Ref (Source Branch): ${env.CHANGE_BRANCH}"
                     
-                    codeql-wrapper analyze ./monorepo --monorepo --upload-sarif --verbose
+                    codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --ref ${env.CHANGE_BRANCH} --base-ref ${env.CHANGE_TARGET}
                 '''
             }
         }
