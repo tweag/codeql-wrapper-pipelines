@@ -15,11 +15,10 @@ pipeline {
         stage('Setup Python') {
             steps {
                 sh '''#!/bin/bash                    
-                    # Upgrade pip, setuptools, and wheel
                     python3 -m venv venv
                     . venv/bin/activate
 
-                    pip uninstall codeql-wrapper -y
+                    pip uninstall codeql-wrapper -y || true
                     
                     echo "Upgrading pip, setuptools, and wheel..."
                     python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython==3.1.45
@@ -35,19 +34,19 @@ pipeline {
                         . venv/bin/activate
                         echo "Base Ref (Target Branch): $CHANGE_TARGET"
                         echo "Ref (Source Branch): $CHANGE_BRANCH"
-    
+
                         curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
-                        
+
                         codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --ref $CHANGE_BRANCH --base-ref $CHANGE_TARGET
                     '''
                 }
             }
         }
-    }
-    
-    post {
-        always {
-            archiveArtifacts artifacts: 'codeql-results/**/*', allowEmptyArchive: true
+
+        stage('Archive Results') {
+            steps {
+                archiveArtifacts artifacts: 'codeql-results/**/*', allowEmptyArchive: true
+            }
         }
     }
 }
