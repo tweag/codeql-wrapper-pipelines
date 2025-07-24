@@ -18,6 +18,10 @@
             "build-mode": "none"
         },
         {
+            "path": "./monorepo/project-python-2",
+            "build-mode": "none"
+        },
+        {
             "path": "./monorepo/project-python-javascript-cpp",
             "build-mode": "none",
             "language": "python"
