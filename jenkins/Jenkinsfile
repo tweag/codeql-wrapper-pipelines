@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.11' // Python comes pre-installed
-            args "-u root" 
-        }
-    }
+    agent any
     
     environment {
         GITHUB_TOKEN = credentials('codeql-wrapper-token')
@@ -19,26 +14,33 @@ pipeline {
         
         stage('Setup Python') {
             steps {
-                sh '''#!/bin/bash
+                sh '''#!/bin/bash                    
+                    # Upgrade pip, setuptools, and wheel
+                    python3 -m venv venv
+                    . venv/bin/activate
+
+                    pip uninstall codeql-wrapper -y
                     
-                    python3 -m pip install --upgrade pip
-                    pip3 install codeql-wrapper
+                    echo "Upgrading pip, setuptools, and wheel..."
+                    python3 -m pip install --upgrade --force-reinstall pip setuptools wheel packaging gitpython==3.1.45
+                    pip install --extra-index-url https://test.pypi.org/simple/ codeql-wrapper==0.2.15
                 '''
             }
         }
         
         stage('CodeQL Analysis') {
             steps {
-                sh '''#!/bin/bash
-                    
-                    codeql-wrapper analyze ${WORKSPACE} \
-                      --monorepo \
-                      --verbose \
-                      --upload-sarif \
-                      --repository owner/repository \
-                      --commit-sha ${GIT_COMMIT} \
-                      --ref ${GIT_BRANCH}
-                '''
+                withCredentials([string(credentialsId: 'PAT', variable: 'GITHUB_TOKEN')]) {
+                    sh '''#!/bin/bash
+                        . venv/bin/activate
+                        echo "Base Ref (Target Branch): $CHANGE_TARGET"
+                        echo "Ref (Source Branch): $CHANGE_BRANCH"
+    
+                        curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
+                        
+                        codeql-wrapper --verbose analyze ./monorepo --monorepo --upload-sarif --ref $CHANGE_BRANCH --base-ref $CHANGE_TARGET
+                    '''
+                }
             }
         }
     }
