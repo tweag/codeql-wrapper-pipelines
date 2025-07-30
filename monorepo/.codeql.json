@@ -30,9 +30,6 @@
             "path": "./monorepo/project-python-javascript-cpp",
             "build-mode": "none",
             "language": "javascript"
-        },
-        {
-            "path": "./monorepo/project-rust-2"
         }
     ]
 }
